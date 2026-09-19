@@ -1,0 +1,11 @@
+# Builds zipejats (es generen a mà; no versionar)
+*.zip
+
+# Workspace de l'editor
+*.code-workspace
+.vscode/
+
+# SO
+.DS_Store
+Thumbs.db
+desktop.ini
