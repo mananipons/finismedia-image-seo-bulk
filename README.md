@@ -174,13 +174,15 @@ Tot es desa en una única opció de WordPress: `fisb_settings`.
 
 ## Instal·lació
 
-1. Descarrega o clona aquest repositori.
-2. Copia la carpeta **`plugin/`** a `wp-content/plugins/` i reanomena-la `finismedia-image-seo-bulk`
-   (o comprimeix-la en un `.zip` i puja'l des de **Connectors → Afegeix nou → Puja un connector**).
+1. Descarrega el fitxer **`finismedia-image-seo-bulk-X.Y.Z.zip`** de l'última [release](../../releases/latest).
+   Usa l'*asset* de la release, **no** el «Source code (zip)»: aquest inclou tot el repositori.
+2. Al WordPress, ves a **Connectors → Afegeix nou → Puja un connector**, selecciona el `.zip` i instal·la'l.
+   (També pots descomprimir-lo a `wp-content/plugins/`: crea la carpeta `finismedia-image-seo-bulk/`.)
 3. Activa **Finismedia Image SEO Bulk Editor** als connectors.
 4. Ves a **Mèdia → SEO Imatges**.
 
-> Tots els fitxers del plugin viuen dins de `plugin/`, no a l'arrel del repositori.
+> Tots els fitxers del plugin viuen dins de la carpeta `finismedia-image-seo-bulk/` del repositori, no a l'arrel.
+> El `.zip` de la release conté aquesta carpeta com a arrel, de manera que WordPress la instal·la amb el nom correcte.
 
 ### Requisits
 
@@ -194,7 +196,7 @@ Tot es desa en una única opció de WordPress: `fisb_settings`.
 finismedia-image-seo-bulk/
 ├── README.md
 ├── AGENTS.md                            # Context per a agents LLM (decisions de disseny, deute tècnic)
-└── plugin/                              # El plugin de WordPress
+└── finismedia-image-seo-bulk/           # El plugin de WordPress (això és el que es distribueix)
     ├── finismedia-image-seo-bulk.php    # Capçalera del plugin, includes i arrencada
     ├── readme.txt                       # Readme en format estàndard de WordPress
     ├── includes/
@@ -251,7 +253,7 @@ Pensat per a l'ecosistema habitual de Finismedia: WordPress + Elementor + WooCom
 
 | Versió | Canvis |
 |---|---|
-| **1.1.1** | Fix: la generació per context desava el títol ja «texturitzat» (`&#8217;`, cometes «»). Ara es fa servir el `post_title` cru. |
+| **1.1.1** | Fix: la generació per context i la sincronització WPML desaven el títol ja «texturitzat» (`&#8217;`, cometes «»). Ara es fa servir el `post_title` cru. |
 | **1.1.0** | Generació automàtica de Títol (nom / context / plantilla), per fila i en lot. Abans només existia per a l'ALT. |
 | **1.0.0** | Versió inicial. |
 

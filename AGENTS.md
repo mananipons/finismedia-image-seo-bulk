@@ -34,7 +34,8 @@ sense ALT, títols buits, inconsistència entre idiomes a sites WPML).
 ```
 finismedia-image-seo-bulk/          # arrel del repo (no és un plugin WP en si)
 ├── AGENTS.md
-└── plugin/                          # carpeta que es distribueix/instal·la com a plugin
+└── finismedia-image-seo-bulk/       # carpeta que es distribueix/instal·la com a plugin
+                                     # (el nom ha de ser el slug: és el que crea WP en instal·lar)
     ├── finismedia-image-seo-bulk.php  # Bootstrap: capçalera del plugin, includes, init
     ├── includes/
     │   ├── class-fisb-generator.php   # Lògica de generació de text ALT/Títol
@@ -46,15 +47,30 @@ finismedia-image-seo-bulk/          # arrel del repo (no és un plugin WP en si)
     ├── assets/
     │   ├── admin.js                   # Autosave inline (AJAX), generació per fila
     │   └── admin.css                  # Badges d'estat, estils del formulari
-    ├── readme.txt                     # Format estàndard de readme de plugin WP
-    └── plugin.zip                     # build zipejat (generat, no editar a mà —
-                                        # revisar si cal regenerar-lo abans de lliurar canvis)
+    └── readme.txt                     # Format estàndard de readme de plugin WP
 ```
 
-> **Important**: tots els fitxers de codi viuen dins `plugin/`, no a l'arrel del repo.
-> El repo és un repositori git publicat a GitHub. `README.md` documenta el plugin de
-> cara a usuaris; mantén-lo sincronitzat amb `plugin/readme.txt` en canviar funcionalitats.
+> **Important**: tots els fitxers de codi viuen dins `finismedia-image-seo-bulk/` (fins a la
+> v1.1.1 la carpeta es deia `plugin/`), no a l'arrel del repo.
+> El repo és privat a GitHub (`mananipons/finismedia-image-seo-bulk`). `README.md`
+> documenta el plugin de cara a usuaris; mantén-lo sincronitzat amb
+> `finismedia-image-seo-bulk/readme.txt` en canviar funcionalitats.
 > Els `.zip` de build estan al `.gitignore` (no es versionen).
+
+### Com fer una release
+
+El «Source code (zip)» de GitHub inclou tot el repo (amb `README.md`, `AGENTS.md`...) i no
+serveix per instal·lar. L'*asset* de la release s'ha de generar amb `git archive`, perquè
+el zip tingui `finismedia-image-seo-bulk/` com a carpeta arrel:
+
+```bash
+git archive --format=zip --prefix=finismedia-image-seo-bulk/ \
+  -o finismedia-image-seo-bulk-X.Y.Z.zip HEAD:finismedia-image-seo-bulk
+gh release create vX.Y.Z finismedia-image-seo-bulk-X.Y.Z.zip --title "vX.Y.Z" --notes "..."
+```
+
+Abans: puja la versió a la capçalera de `finismedia-image-seo-bulk.php`, a `FISB_VERSION`,
+a `readme.txt` (`Stable tag` + changelog) i al `README.md` (badge + changelog).
 
 ### Responsabilitat de cada classe
 
@@ -122,9 +138,9 @@ finismedia-image-seo-bulk/          # arrel del repo (no és un plugin WP en si)
   qualsevol sessió de treball: validar sintaxi amb `php -l` a tots els fitxers.**
 - **`sanitize_text_field()` a l'ALT**: si en el futur es vol permetre ALT amb salts de
   línia o HTML mínim, cal revisar-ho (actualment s'elimina tot).
-- **`plugin/plugin.zip`** és un build zipejat, no es regenera automàticament. Si es
-  toquen fitxers de `plugin/`, cal refer el zip (o esborrar-lo) abans de lliurar-lo a
-  un client, perquè no quedi desincronitzat amb el codi font.
+- **Els `.zip` de build no es versionen** (`.gitignore`) ni es regeneren sols. El zip que
+  s'entrega a un client és l'*asset* de la release de GitHub (veure «Com fer una
+  release»); si es toca el codi, cal una release nova perquè no quedi desincronitzat.
 
 ## 6. Metodologia SEO "Expert SEO Universal" (context, no part del codi)
 

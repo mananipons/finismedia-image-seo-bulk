@@ -41,6 +41,7 @@ Funcionalitats:
 
 = 1.1.1 =
 * Fix: la generació per context (ALT o Títol) desava el títol del post pare ja "texturitzat" (`&#8217;` en lloc d'apòstrof, cometes «» afegides pel filtre `the_title`). Ara s'usa el `post_title` cru.
+* Fix: la sincronització WPML també desava el títol texturitzat a les traduccions.
 
 = 1.1.0 =
 * Generació automàtica de Títol (nom de fitxer / context / plantilla), tant per fila com en accions en lot. Abans només estava disponible per a l'ALT.
