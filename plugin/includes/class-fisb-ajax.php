@@ -65,7 +65,10 @@ class FISB_Ajax {
 		$updated = 0;
 		if ( $sync ) {
 			$alt     = get_post_meta( $id, '_wp_attachment_image_alt', true );
-			$title   = get_the_title( $id );
+			// Títol cru: get_the_title() passa per `the_title` (wptexturize) i
+			// desaria entitats HTML a les traduccions.
+			$post    = get_post( $id );
+			$title   = $post ? $post->post_title : '';
 			$updated = FISB_WPML::sync( $id, $alt, $title );
 		}
 
