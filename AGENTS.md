@@ -241,13 +241,21 @@ d'integrar amb altres eines del stack:
 - Comentaris i missatges d'interfície en **català**, seguint la resta de projectes de
   Finismedia.
 
-## 9. Properes tasques previstes (backlog)
+## 9. Properes millores (backlog)
 
-- [ ] Meta_query real per a filtres d'estat amb paginació exacta.
+Ordre recomanat de prioritat. La primera és la següent a fer.
+
+- [ ] **Meta_query real per a filtres d'estat amb paginació exacta** (*pendent, prioritat
+      1*). Resol el deute tècnic de la secció 5: avui `fisb_status` i `fisb_lang` es filtren
+      en PHP després del `WP_Query`, així que `found_posts` és el total sense filtrar.
+      Pla: «falta ALT» = `_wp_attachment_image_alt` inexistent o buit (`meta_query`);
+      «falta Títol» = condició sobre `post_title` via `posts_where`; idioma = `JOIN` amb
+      la taula de traduccions de WPML, encapsulat a `FISB_WPML`.
 - [ ] Exportació CSV de l'estat ALT/Títol per adjuntar a informes d'auditoria SEO.
 - [ ] Integració amb la metodologia de la secció 6: botó "Genera informe d'imatges"
       que apliqui els nivells de prioritat (Crític/Alt/Mitjà/Baix) sobre les imatges
-      detectades sense ALT.
+      detectades sense ALT. Millor fer-ho *després* del `meta_query`, perquè necessita
+      recomptes exactes.
 - [ ] Tests unitaris per `FISB_Generator` (WP_Mock o similar).
 - [ ] Validar amb `php -l` / PHPCS (WordPress-Extra ruleset) en un entorn amb PHP
       disponible.

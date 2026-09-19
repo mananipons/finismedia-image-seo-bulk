@@ -245,6 +245,15 @@ finismedia-image-seo-bulk/
 - **El «Mètode de generació per defecte» de la configuració es desa, però de moment no governa cap acció.** Les accions i enllaços de generació trien el mètode explícitament.
 - **No hi ha tests automatitzats.**
 
+## Properes millores
+
+Per ordre de prioritat:
+
+1. **Filtres d'estat i idioma amb paginació exacta.** Migrar-los a un `meta_query` real (i a un `JOIN` amb les traduccions de WPML) perquè el recompte i la paginació reflecteixin el filtre aplicat, també en mediateques grans.
+2. **Exportació CSV** de l'estat d'ALT i Títol, per adjuntar-la a informes d'auditoria SEO.
+3. **Informe d'imatges amb prioritats** (Crític / Alt / Mitjà / Baix) sobre les imatges detectades sense ALT.
+4. **Tests unitaris** per a la lògica de generació de text.
+
 ## Compatibilitat
 
 Pensat per a l'ecosistema habitual de Finismedia: WordPress + Elementor + WooCommerce, amb WPML com a opció (Polylang i Weglot no s'integren: en aquests casos el plugin funciona com a editor sense sincronització entre idiomes).
