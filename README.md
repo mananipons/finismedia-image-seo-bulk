@@ -34,6 +34,8 @@ Resol tres problemes recurrents que apareixen a les auditories SEO:
 | **Filtres** | Per estat (falta ALT / falta Títol / falta qualsevol dels dos), per idioma (si hi ha WPML) i cerca de text. |
 | **Generació automàtica** | Tres mètodes: nom de fitxer, context del post/pàgina i plantilla amb placeholders. Disponible per a ALT i per a Títol. |
 | **Accions en lot** | Selecciona imatges i genera o buida ALT/Títol de cop. |
+| **Filtre per tipus de contingut** | Mostra només les imatges usades en un tipus de contingut (pàgines, entrades, productes...), amb paginació exacta. |
+| **Copiar entre camps** | Botó a cada camp per copiar-hi el contingut de l'altre (Títol → ALT i ALT → Títol) i desar-lo. |
 | **Detecció d'ús** | Mostra a quin post/pàgina s'utilitza cada imatge (com a destacada o dins del contingut). |
 | **WPML opcional** | Tres modes de sincronització entre traduccions, triats per l'administrador. Sense WPML, el plugin funciona igual. |
 | **Lleuger** | Sense taules noves, sense migracions, sense dependències externes. |

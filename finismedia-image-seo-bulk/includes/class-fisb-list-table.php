@@ -15,6 +15,13 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 
 class FISB_List_Table extends WP_List_Table {
 
+	/**
+	 * Tipus de contingut (post type) pel qual es filtra la consulta actual.
+	 *
+	 * @var string
+	 */
+	protected $content_type = '';
+
 	public function __construct() {
 		parent::__construct(
 			array(
@@ -101,17 +108,23 @@ class FISB_List_Table extends WP_List_Table {
 
 	public function column_alt( $item ) {
 		return sprintf(
-			'<input type="text" class="fisb-field regular-text" data-id="%d" data-field="alt" value="%s" />',
+			'<input type="text" class="fisb-field regular-text" data-id="%1$d" data-field="alt" value="%2$s" />
+			<button type="button" class="button button-small fisb-copy" data-from="title" data-to="alt" title="%3$s">%4$s</button>',
 			(int) $item['ID'],
-			esc_attr( $item['alt'] )
+			esc_attr( $item['alt'] ),
+			esc_attr__( 'Copia el contingut del Títol a l\'ALT', 'fisb' ),
+			esc_html__( '← Títol', 'fisb' )
 		);
 	}
 
 	public function column_title( $item ) {
 		return sprintf(
-			'<input type="text" class="fisb-field regular-text" data-id="%d" data-field="title" value="%s" />',
+			'<input type="text" class="fisb-field regular-text" data-id="%1$d" data-field="title" value="%2$s" />
+			<button type="button" class="button button-small fisb-copy" data-from="alt" data-to="title" title="%3$s">%4$s</button>',
 			(int) $item['ID'],
-			esc_attr( $item['title'] )
+			esc_attr( $item['title'] ),
+			esc_attr__( 'Copia el contingut de l\'ALT al Títol', 'fisb' ),
+			esc_html__( '← ALT', 'fisb' )
 		);
 	}
 
@@ -159,9 +172,17 @@ class FISB_List_Table extends WP_List_Table {
 
 		$status = isset( $_REQUEST['fisb_status'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['fisb_status'] ) ) : '';
 		$lang   = isset( $_REQUEST['fisb_lang'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['fisb_lang'] ) ) : '';
+		$ctype  = $this->get_requested_content_type();
 		$tpl    = isset( $_REQUEST['fisb_template'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['fisb_template'] ) ) : FISB_Settings::get( 'template', '{post_title}' );
 		?>
 		<div class="alignleft actions">
+			<select name="fisb_content_type">
+				<option value=""><?php esc_html_e( 'Tots els tipus de contingut', 'fisb' ); ?></option>
+				<?php foreach ( self::get_content_types() as $slug => $label ) : ?>
+					<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $ctype, $slug ); ?>><?php echo esc_html( $label ); ?></option>
+				<?php endforeach; ?>
+			</select>
+
 			<select name="fisb_status">
 				<option value=""><?php esc_html_e( 'Tots els estats', 'fisb' ); ?></option>
 				<option value="missing_alt" <?php selected( $status, 'missing_alt' ); ?>><?php esc_html_e( 'Falta ALT', 'fisb' ); ?></option>
@@ -216,7 +237,15 @@ class FISB_List_Table extends WP_List_Table {
 			'order'          => 'DESC',
 		);
 
+		$this->content_type = $this->get_requested_content_type();
+
+		if ( $this->content_type ) {
+			add_filter( 'posts_where', array( $this, 'filter_where_content_type' ) );
+		}
+
 		$query = new WP_Query( $args );
+
+		remove_filter( 'posts_where', array( $this, 'filter_where_content_type' ) );
 
 		$items = array();
 
@@ -266,6 +295,62 @@ class FISB_List_Table extends WP_List_Table {
 				'total_pages' => $query->max_num_pages,
 			)
 		);
+	}
+
+	/**
+	 * Tipus de contingut públics (sense adjunts) disponibles per filtrar.
+	 *
+	 * @return array Slug => etiqueta.
+	 */
+	public static function get_content_types() {
+		$types = array();
+
+		foreach ( get_post_types( array( 'public' => true ), 'objects' ) as $slug => $object ) {
+			if ( 'attachment' === $slug ) {
+				continue;
+			}
+			$types[ $slug ] = $object->labels->name;
+		}
+
+		return $types;
+	}
+
+	/**
+	 * Tipus de contingut demanat, validat contra els tipus registrats.
+	 *
+	 * @return string Slug o cadena buida.
+	 */
+	protected function get_requested_content_type() {
+		$type = isset( $_REQUEST['fisb_content_type'] ) ? sanitize_key( wp_unslash( $_REQUEST['fisb_content_type'] ) ) : '';
+
+		return isset( self::get_content_types()[ $type ] ) ? $type : '';
+	}
+
+	/**
+	 * Limita els adjunts als usats en contingut del tipus triat: com a fill
+	 * (post_parent), com a imatge destacada o referenciats al contingut
+	 * (classe wp-image-{ID}), igual que la detecció de context del generador.
+	 *
+	 * @param string $where Clàusula WHERE de WP_Query.
+	 * @return string
+	 */
+	public function filter_where_content_type( $where ) {
+		global $wpdb;
+
+		if ( ! $this->content_type ) {
+			return $where;
+		}
+
+		$where .= $wpdb->prepare(
+			" AND ( {$wpdb->posts}.post_parent IN ( SELECT ID FROM {$wpdb->posts} WHERE post_type = %s )
+			OR {$wpdb->posts}.ID IN ( SELECT pm.meta_value FROM {$wpdb->postmeta} pm INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id WHERE pm.meta_key = '_thumbnail_id' AND p.post_type = %s )
+			OR EXISTS ( SELECT 1 FROM {$wpdb->posts} c WHERE c.post_type = %s AND c.post_status = 'publish' AND c.post_content REGEXP CONCAT( 'wp-image-', {$wpdb->posts}.ID, '([^0-9]|$)' ) ) )",
+			$this->content_type,
+			$this->content_type,
+			$this->content_type
+		);
+
+		return $where;
 	}
 
 	/**

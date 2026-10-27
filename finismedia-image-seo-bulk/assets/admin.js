@@ -67,6 +67,25 @@
 		} );
 	} );
 
+	// Copia el valor de l'altre camp (ALT <-> Títol) de la mateixa fila i el desa.
+	$( document ).on( 'click', '.fisb-copy', function ( e ) {
+		e.preventDefault();
+
+		var $button = $( this );
+		var $row    = $button.closest( 'tr' );
+		var $from   = $row.find( '.fisb-field[data-field="' + $button.data( 'from' ) + '"]' );
+		var $to     = $row.find( '.fisb-field[data-field="' + $button.data( 'to' ) + '"]' );
+
+		if ( $from.val() === $to.val() ) {
+			return;
+		}
+
+		$to.val( $from.val() );
+		askSyncIfNeeded( function ( sync ) {
+			saveField( $to, sync );
+		} );
+	} );
+
 	// Generació automàtica per fila (ALT o Títol; nom de fitxer / context).
 	$( document ).on( 'click', '.fisb-generate', function ( e ) {
 		e.preventDefault();

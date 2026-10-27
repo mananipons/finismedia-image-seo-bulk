@@ -16,11 +16,13 @@ Ubicació: Mèdia > SEO Imatges.
 Funcionalitats:
 
 * Llistat de totes les imatges de la mediateca amb edició inline d'ALT i Títol (desat automàtic via AJAX en perdre el focus).
+* Filtre per tipus de contingut (pàgines, entrades, productes...): només les imatges usades en aquell tipus, com a fill, destacada o dins del contingut.
 * Filtres per estat (falta ALT / falta Títol / falta qualsevol) i per idioma (si WPML està actiu).
 * Generació automàtica per fila o en lot:
   - A partir del nom de fitxer (neteja guions/underscores i sufixos de mida).
   - A partir del context (títol del post/pàgina on s'usa la imatge, com a destacada o dins del contingut).
   - Mitjançant una plantilla configurable amb els placeholders {filename}, {post_title}, {site_name}.
+* Botó de copiar a cada camp (ALT i Títol) per copiar-hi el contingut de l'altre i desar-lo.
 * Accions en lot: generar ALT (3 mètodes), generar Títol (3 mètodes), buidar ALT, buidar Títol.
 * Compatibilitat amb WPML configurable a Mèdia > SEO Imatges - Config:
   - Independent per idioma (no toca les traduccions).
