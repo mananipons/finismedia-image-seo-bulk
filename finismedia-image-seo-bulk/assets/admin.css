@@ -55,3 +55,23 @@
 .fisb-wrap td.column-thumbnail img {
 	display: block;
 }
+
+.fisb-wrap .fisb-infobox {
+	max-width: 900px;
+	margin: 15px 0;
+	padding: 4px 20px 12px;
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-left: 4px solid #2271b1;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+}
+
+.fisb-wrap .fisb-infobox h2 {
+	margin: 12px 0 8px;
+	font-size: 15px;
+}
+
+.fisb-wrap .fisb-infobox ul {
+	margin: 8px 0 0 18px;
+	list-style: disc;
+}

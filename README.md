@@ -4,7 +4,7 @@
 
 **Edita en lot l'ALT i el Títol de les imatges de la mediateca de WordPress, amb generació automàtica i sincronització configurable amb WPML.**
 
-![Versió](https://img.shields.io/badge/versi%C3%B3-1.2.1-blue)
+![Versió](https://img.shields.io/badge/versi%C3%B3-1.2.2-blue)
 ![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-21759b?logo=wordpress&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)
 ![WPML](https://img.shields.io/badge/WPML-opcional-orange)
@@ -271,6 +271,7 @@ Pensat per a l'ecosistema habitual de Finismedia: WordPress + Elementor + WooCom
 
 | Versió | Canvis |
 |---|---|
+| **1.2.2** | Caixa d'explicació «Què fa aquest plugin?» a la pàgina SEO Imatges. |
 | **1.2.1** | Actualitzacions automàtiques des de GitHub Releases (botó «Actualitza ara» de WordPress). |
 | **1.2.0** | Botons de copiar ALT ↔ Títol a cada camp. Filtre per tipus de contingut (pàgines, entrades, productes...) amb paginació exacta. |
 | **1.1.1** | Fix: la generació per context i la sincronització WPML desaven el títol ja «texturitzat» (`&#8217;`, cometes «»). Ara es fa servir el `post_title` cru. |

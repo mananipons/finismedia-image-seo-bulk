@@ -4,7 +4,7 @@ Tags: seo, images, alt text, wpml, bulk edit
 Requires at least: 5.8
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 
 Edita en lot els atributs ALT i Títol de les imatges de la mediateca, amb generació automàtica opcional i compatibilitat configurable amb WPML.
@@ -41,6 +41,9 @@ Funcionalitats:
 * Actualitzacions automàtiques: el plugin consulta les releases de GitHub i mostra el botó «Actualitza ara» de WordPress quan hi ha una versió nova (`FISB_Updater`).
 
 == Changelog ==
+
+= 1.2.2 =
+* Caixa d'explicació «Què fa aquest plugin?» a la pàgina SEO Imatges.
 
 = 1.2.1 =
 * Actualitzacions automàtiques des de GitHub Releases: botó «Actualitza ara» de WordPress quan hi ha una versió nova.

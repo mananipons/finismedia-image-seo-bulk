@@ -84,9 +84,19 @@ class FISB_Admin {
 		?>
 		<div class="wrap fisb-wrap">
 			<h1><?php esc_html_e( "SEO d'imatges en lot", 'fisb' ); ?></h1>
-			<p>
-				<?php esc_html_e( 'Edita l\'ALT i el Títol de les imatges de la mediateca. Els canvis d\'un camp es desen automàticament en sortir-ne (AJAX); també pots aplicar accions en lot a la selecció.', 'fisb' ); ?>
-			</p>
+			<div class="fisb-infobox">
+				<h2><?php esc_html_e( 'Què fa aquest plugin?', 'fisb' ); ?></h2>
+				<p>
+					<?php esc_html_e( 'Et permet revisar i editar en lot el text ALT i el Títol de totes les imatges de la mediateca, per millorar el SEO i l\'accessibilitat del web.', 'fisb' ); ?>
+				</p>
+				<ul>
+					<li><?php esc_html_e( 'Edita l\'ALT i el Títol directament a la taula: es desen sols en sortir del camp.', 'fisb' ); ?></li>
+					<li><?php esc_html_e( 'Genera textos automàticament a partir del nom de fitxer, del context (post o pàgina on s\'utilitza la imatge) o d\'una plantilla.', 'fisb' ); ?></li>
+					<li><?php esc_html_e( 'Aplica accions en lot a la selecció: generar o buidar ALT i Títol de moltes imatges alhora.', 'fisb' ); ?></li>
+					<li><?php esc_html_e( 'Filtra per estat (falta ALT, falta Títol...), idioma i tipus de contingut per trobar ràpidament què cal arreglar.', 'fisb' ); ?></li>
+					<li><?php esc_html_e( 'Compatible amb WPML: pots sincronitzar els canvis amb les traduccions de la imatge (es configura a SEO Imatges - Config).', 'fisb' ); ?></li>
+				</ul>
+			</div>
 
 			<?php if ( FISB_WPML::is_active() ) : ?>
 				<p class="fisb-wpml-note">
