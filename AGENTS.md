@@ -69,6 +69,10 @@ git archive --format=zip --prefix=finismedia-image-seo-bulk/ \
 gh release create vX.Y.Z finismedia-image-seo-bulk-X.Y.Z.zip --title "vX.Y.Z" --notes "..."
 ```
 
+**Importants per a l'auto-actualització (`FISB_Updater`):** el repo ha de ser públic; el tag
+ha de ser `vX.Y.Z`; l'*asset* s'ha de dir exactament `finismedia-image-seo-bulk-X.Y.Z.zip`
+(si no, l'updater ignora la release). Només `FISB_Updater` parla amb l'API de GitHub.
+
 Abans: puja la versió a la capçalera de `finismedia-image-seo-bulk.php`, a `FISB_VERSION`,
 a `readme.txt` (`Stable tag` + changelog) i al `README.md` (badge + changelog).
 

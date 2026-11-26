@@ -4,7 +4,7 @@ Tags: seo, images, alt text, wpml, bulk edit
 Requires at least: 5.8
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 
 Edita en lot els atributs ALT i Títol de les imatges de la mediateca, amb generació automàtica opcional i compatibilitat configurable amb WPML.
@@ -38,8 +38,12 @@ Funcionalitats:
 * La detecció de "context" cerca primer si la imatge és imatge destacada d'algun post, i si no, si apareix referenciada al contingut (classe `wp-image-{ID}`).
 * Quan els filtres d'estat/idioma estan actius, el comptador de paginació es basa en el total sense filtrar (limitació coneguda de la v1). En mediateques molt grans es recomana ampliar `FISB_List_Table::prepare_items()` amb un `meta_query`/`WHERE` dedicat per a un recompte exacte.
 * Requereix la capacitat `upload_files` per editar imatges i `manage_options` per accedir a la configuració.
+* Actualitzacions automàtiques: el plugin consulta les releases de GitHub i mostra el botó «Actualitza ara» de WordPress quan hi ha una versió nova (`FISB_Updater`).
 
 == Changelog ==
+
+= 1.2.1 =
+* Actualitzacions automàtiques des de GitHub Releases: botó «Actualitza ara» de WordPress quan hi ha una versió nova.
 
 = 1.2.0 =
 * Botons de copiar ALT <-> Títol a cada camp.

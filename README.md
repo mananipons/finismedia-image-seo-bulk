@@ -4,7 +4,7 @@
 
 **Edita en lot l'ALT i el Títol de les imatges de la mediateca de WordPress, amb generació automàtica i sincronització configurable amb WPML.**
 
-![Versió](https://img.shields.io/badge/versi%C3%B3-1.2.0-blue)
+![Versió](https://img.shields.io/badge/versi%C3%B3-1.2.1-blue)
 ![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-21759b?logo=wordpress&logoColor=white)
 ![PHP](https://img.shields.io/badge/PHP-7.4%2B-777bb4?logo=php&logoColor=white)
 ![WPML](https://img.shields.io/badge/WPML-opcional-orange)
@@ -186,6 +186,13 @@ Tot es desa en una única opció de WordPress: `fisb_settings`.
 > Tots els fitxers del plugin viuen dins de la carpeta `finismedia-image-seo-bulk/` del repositori, no a l'arrel.
 > El `.zip` de la release conté aquesta carpeta com a arrel, de manera que WordPress la instal·la amb el nom correcte.
 
+### Actualitzacions automàtiques
+
+El plugin consulta les *releases* de GitHub (`FISB_Updater`). Quan hi ha una versió nova,
+WordPress mostra el botó **Actualitza ara** a *Connectors* i a *Escriptori → Actualitzacions*.
+Requereix que el repositori sigui **públic** i que la release tingui l'*asset*
+`finismedia-image-seo-bulk-X.Y.Z.zip`. La comprovació es cacheja 6 h.
+
 ### Requisits
 
 - WordPress 5.8 o superior
@@ -264,6 +271,7 @@ Pensat per a l'ecosistema habitual de Finismedia: WordPress + Elementor + WooCom
 
 | Versió | Canvis |
 |---|---|
+| **1.2.1** | Actualitzacions automàtiques des de GitHub Releases (botó «Actualitza ara» de WordPress). |
 | **1.2.0** | Botons de copiar ALT ↔ Títol a cada camp. Filtre per tipus de contingut (pàgines, entrades, productes...) amb paginació exacta. |
 | **1.1.1** | Fix: la generació per context i la sincronització WPML desaven el títol ja «texturitzat» (`&#8217;`, cometes «»). Ara es fa servir el `post_title` cru. |
 | **1.1.0** | Generació automàtica de Títol (nom / context / plantilla), per fila i en lot. Abans només existia per a l'ALT. |
