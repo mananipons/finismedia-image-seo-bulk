@@ -4,7 +4,7 @@ Tags: seo, images, alt text, wpml, bulk edit
 Requires at least: 5.8
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.1.1
+Stable tag: 1.2.0
 License: GPLv2 or later
 
 Edita en lot els atributs ALT i Títol de les imatges de la mediateca, amb generació automàtica opcional i compatibilitat configurable amb WPML.
@@ -40,6 +40,10 @@ Funcionalitats:
 * Requereix la capacitat `upload_files` per editar imatges i `manage_options` per accedir a la configuració.
 
 == Changelog ==
+
+= 1.2.0 =
+* Botons de copiar ALT <-> Títol a cada camp.
+* Filtre per tipus de contingut (pàgines, entrades, productes...) amb paginació exacta.
 
 = 1.1.1 =
 * Fix: la generació per context (ALT o Títol) desava el títol del post pare ja "texturitzat" (`&#8217;` en lloc d'apòstrof, cometes «» afegides pel filtre `the_title`). Ara s'usa el `post_title` cru.

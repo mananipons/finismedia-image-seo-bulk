@@ -3,7 +3,7 @@
  * Plugin Name: Finismedia Image SEO Bulk Editor
  * Plugin URI:  https://finismedia.com
  * Description: Edita en lot els atributs ALT i Títol de les imatges de la mediateca, amb generació automàtica opcional i compatibilitat configurable amb WPML.
- * Version:     1.1.1
+ * Version:     1.2.0
  * Author:      Finismedia
  * Author URI:  https://finismedia.com
  * Text Domain: fisb
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'FISB_VERSION', '1.1.1' );
+define( 'FISB_VERSION', '1.2.0' );
 define( 'FISB_PATH', plugin_dir_path( __FILE__ ) );
 define( 'FISB_URL', plugin_dir_url( __FILE__ ) );
 
